@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CVPR2022_DCD-GAN</title>
+
+<style media="screen" type="text/css">
+body
+{
+  border: 0pt none;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0pt;
+  outline-color: invert;
+  outline-style: none;
+  outline-width: 0pt;
+  padding: 0pt;
+  vertical-align: baseline;
+}
+body {
+  position: relative;
+  margin: 3em auto 2em auto;
+  width: 1080px;
+  font-family: Times New Roman, Lato, Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  background: #fdfdfd;
+}
+</style>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1ec4ad5c61857459aa78d5ee7ddee28d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+<body>
+<h3 align="center"><i><font size="3" face="Palatino Linotype">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2022</font></i></h3>
+
+<table align="center">
+<td align="center">
+<h1>Unpaired Deep Image Deraining Using Dual Contrastive Learning</h1>
+<h3>
+	<a href="https://cxtalk.github.io/" target="_blank"><font size="3"><b>Xiang Chen</b></font></a><sup><font size="2">1,2</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Jinshan Pan</font><sup><font size="2">2</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Kui Jiang</font><sup><font size="2">3</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Yufeng Li</font><sup><font size="2">1</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Yufeng Huang</font><sup><font size="2">1</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Caihua Kong</font><sup><font size="2">1</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Longgang Dai</font><sup><font size="2">1</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+	<font size="3">Zhentao Fan</font><sup><font size="2">1</font></sup>&nbsp;&nbsp;&nbsp;&nbsp;
+</h3>
+
+<sup><font size="2">1</font></sup>
+<b><a><font size="3">Shenyang Aerospace University</font></a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<sup><font size="2">2</font></sup>
+<b><a><font size="3">Nanjing University of Science and Technology</font></a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<sup><font size="2">3</font></sup>
+<b><a><font size="3">Wuhan University</font></a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<br>
+<br>&nbsp;
+	<b><a><font size="3"> Contact us: cv.xchen@gmail.com</font></a></b>
+	<b><font size="3"> [ <a href="https://arxiv.org/abs/2109.02973" target="_blank">arXiv</a> ] </font></b>
+	<b><font size="3"> [ <a href="https://drive.google.com/drive/folders/1pPdcE1ge5XTvaCSnFDIKFqo9NGTcXVKi?usp=sharing" target="_blank">code</a> ] </font></b>
+
+</td>
+
+	
+</table>
+
+<br>
+<h2><p><font size="6"><b>Abstract</b></font></p></h2>
+<hr/>
+<p style="text-align:justify";><font size="4" face="Palatino Linotype">Learning single image deraining (SID) networks from an unpaired set of clean and rainy images is practical and valuable as acquiring paired real-world data is almost infeasible. However, without the paired data as the supervision, learning a SID network is challenging. Moreover, simply using existing unpaired learning methods (e.g., unpaired adversarial learning and cycle-consistency constraints) in the SID task is insufficient to learn the underlying relationship from rainy inputs to clean outputs as there exists significant domain gap between the rainy and clean images. In this paper, we develop an effective unpaired SID adversarial framework which explores mutual properties of the unpaired exemplars by a dual contrastive learning manner in a deep feature space, named as DCD-GAN. The proposed method mainly consists of two cooperative branches: Bidirectional Translation Branch (BTB) and Contrastive Guidance Branch (CGB). Specifically, BTB exploits full advantage of the circulatory architecture of adversarial consistency to generate abundant exemplar pairs and excavates latent feature distributions between two domains by equipping it with bidirectional mapping. Simultaneously, CGB implicitly constrains the embeddings of different exemplars in the deep feature space by encouraging the similar feature distributions closer while pushing the dissimilar further away, in order to better facilitate rain removal and help image restoration. Extensive experiments demonstrate that our method performs favorably against existing unpaired deraining approaches on both synthetic and real-world datasets, and generates comparable results against several fully-supervised or semi-supervised models.
+</font></p>
+
+
+<br>
+<h2><p><font size="6"><b>Motivation</b></font></p></h2>
+<hr/>
+</table>
+<p style="text-align:justify";><font size="4" face="Palatino Linotype">Due to the lack of suitable constraints for rain streaks and clean images, existing unsupervised deraining methods do not effectively restore high-quality derained results. Note that, previous methods mainly consider the mapping relationship in the image space but ignore the potential relationship in the feature space, which does not fully excavate the useful feature information for image deraining. Since the ground truth labeled data is not fully available, how to model the latent-space representation by exploring the relationship between the rainy inputs and clean outputs is important for the deep learning-based methods. In addition, given that clean images can be easily obtained, it is also important to develop an effective method that can explore properties of the clean exemplars to facilitate image restoration when paired data is not available. Ideally, we note that if a deep model can accurately restore a clean image from rainy one, the features that are for clean image reconstruction would have mutual information with the ones from the ground truth rain-free images by the same deep model. This motivates us to introduce a contrastive learning method to mining the mutual features of rainy images and clean ones in the deep feature space, so that we can use the features from the clean images to better guide the image restoration.
+</font></p>
+
+
+<br>
+<h2><p><font size="6"><b>Framework</b></font></p></h2>
+<hr/>
+<table align="center">
+<tr>
+	<td align="center"><img border=0 width=900 src="Framework.png"></td>
+</tr>
+</table>
+<p style="text-align:justify";><font size="4" face="Palatino Linotype">The overall framework of the proposed Dual Contrastive Derain-GAN (DCD-GAN). There are two cooperative branches, bidirectional translation branch (BTB) and contrastive guidance branch (CGB). In the feature space, images generated from close (positive) latent codes are visually similar, while images generated from far-away (negative) latent codes are visually disimilar. Our developed CGBs aim to learn a representation to pull similar feature distribution and push disimilar apart in the deep feature space. The constraint of CGB is enforced by encouraging the positives closer while keeping the negatives further away, so as to help the deraining generators guide correctly in transforming the rainy inputs to the clean outputs.
+</font></p>
+
+<br>
+<h3><p><font size="6"><b>Visualization</b></font></p></h2>
+<hr/>
+<table align="center">
+<tr>
+	<td align="center"><img border=0 width=600 src="Visualization.png"></td>
+</tr>
+</table>
+<p style="text-align:justify";><font size="4" face="Palatino Linotype">The t-SNE visualization of features learned with/without our CGB. The red round point denotes the deep features extracted from rainy images for clean image reconstruction. The blue round points denote the deep features extracted from clean images. With CGBs, the embeddings of the features from the clean image and the rainy image have low distances in the latent space. Thus, using the rainy features by CGBs is able to generate clean images. Ideally, if a deep model can accurately restore a clean image from rainy one, the features that are for clean image reconstruction and the feature of ground truth rain-free images will completely overlap in the deep feature space. Obviously, with CGBs, these two types of features are pulled together, which become well distinguished and able to capture the relationship between the rainy domain and the rain-free domain.
+</font></p>
+
+<br>
+<h3><p><font size="6"><b>Quantitative Results</b></font></p></h2>
+<hr/>
+<table align="center">
+<tr>
+	<td align="center"><img border=0 width=900 src="Quantitative Results.png"></td>
+</tr>
+</table>
+
+
+
+<br>
+<h2><p><font size="6"><b>Qualitative Results</b></font></p></h2>
+<hr/>
+<table align="center">
+<tr>
+	<td align="center"><img border=0 width=1000 src="Qualitative Results.png"></td>
+</tr>
+</table>
+
+
+
+<h2><p><font size="6" color="black"><b>BibTex</b></font></p></h2>
+<hr/>
+<font size="3">
+@InProceedings{chen2022unpaired,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;title = {Unpaired Deep Image Deraining Using Dual Contrastive Learning},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;author = {Chen, Xiang and Pan, Jinshan and Jiang, Kui and Li, Yufeng and Huang, Yufeng and Kong, Caihua and Dai, Longgang and Fan, Zhentao},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;year = {2022},<br>
+}
+</font>
+
+
+</body>
+
+</html>
